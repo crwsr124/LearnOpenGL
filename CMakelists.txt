@@ -1,0 +1,50 @@
+cmake_minimum_required(VERSION 3.16)
+
+project (main)
+
+# set(CMAKE_CXX_FLAGS   "-std=c++11")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")    # -g for crash line info
+# set(CMAKE_MACOSX_RPATH 0)
+
+# include_directories("NGSDK_include/")
+# include_directories("segmentation_video_filter/")
+# include_directories("segmentation_algorithm/")
+# include_directories("segmentation_algorithm/libMatting/Mac")
+include_directories("lib/glfw/include/")
+include_directories("lib/glad/include/")
+include_directories("lib/glad/include/")
+
+# find_package(OpenCV REQUIRED)
+# include_directories(${OpenCV_INCLUDE_DIRS})
+
+link_directories("lib/glfw/lib/")
+
+# set(MY_PUBLIC_HEADERS
+#     ./segmentation_video_filter/segmentation_video_filter.h
+#     ./segmentation_video_filter/segmentation_video_filter_provider.h
+#     ./segmentation_algorithm/video_segmentation_defines.h
+#     ./segmentation_algorithm/video_segmentation_wrapper.h
+# )
+
+add_executable(main 
+    main.cpp
+    lib/glad/src/glad.c)
+
+# set_target_properties(VideoSegmentation PROPERTIES
+#     FRAMEWORK TRUE
+#     MACOSX_BUNDLE TRUE
+#     LINKER_LANGUAGE C
+#     FRAMEWORK_VERSION A
+#     PUBLIC_HEADER "${MY_PUBLIC_HEADERS}"
+#     MACOSX_FRAMEWORK_IDENTIFIER agora.io.segment
+#     # XCODE_ATTRIBUTE_LD_DYLIB_INSTALL_NAME "@rpath/VideoSegmentation.framework/VideoSegmentation"
+# )
+
+# target_link_libraries (VideoSegmentation Matting ${OpenCV_LIBS} "-framework CoreVideo -framework Foundation -framework CoreML -framework Metal -framework Accelerate" )
+
+target_link_libraries (main glfw3 "-framework OpenGL")
+
+target_link_libraries (main glfw3 "-framework OpenGL -framework CoreFoundation -framework CoreGraphics -framework Appkit -framework IOKit")
+
+# add_subdirectory( 3rdparty/libyuv )
+
